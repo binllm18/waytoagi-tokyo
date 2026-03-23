@@ -145,7 +145,7 @@ export default function EventDetailsSection() {
           {/* MOBILE EXCLUSIVE: 2026 Watermark anchored at the absolute bottom of the timeline block */}
           <div className="absolute bottom-[-10px] inset-x-0 pointer-events-none z-0 opacity-80 flex justify-center overflow-hidden">
              <span 
-               className="block text-[65vw] leading-[0.75] font-black text-[#2b2b2d] select-none tracking-tighter"
+               className="block text-[45vw] leading-[0.75] font-black text-[#2b2b2d] select-none tracking-tighter"
                style={{ fontFamily: "'Impact', 'Arial Black', sans-serif" }}
              >
                2026
