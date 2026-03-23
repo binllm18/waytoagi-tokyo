@@ -71,11 +71,11 @@ export default function TopNavBar() {
     <AnimatePresence>
       {isVisible && (
         <motion.div 
-          initial={{ opacity: 0, y: -50 }}
+          initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -50 }}
+          exit={{ opacity: 0, y: 50 }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="fixed top-6 md:top-8 inset-x-0 w-full flex justify-center px-4 z-[90] pointer-events-none"
+          className="fixed bottom-6 md:bottom-auto md:top-8 inset-x-0 w-full flex justify-center px-4 z-[90] pointer-events-none"
         >
           <div className="flex overflow-x-auto scrollbar-hide items-center justify-start md:justify-center gap-1 md:gap-2 max-w-7xl p-1.5 md:p-2 rounded-full bg-white/80 backdrop-blur-2xl border border-black/5 shadow-xl shadow-black/5 pointer-events-auto">
             {tabs.map(tab => {

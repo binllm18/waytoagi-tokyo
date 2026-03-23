@@ -2,16 +2,32 @@
 
 import { useLanguage } from "@/i18n/LanguageContext";
 import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
 
 export default function EventDetailsSection() {
   const { t } = useLanguage();
   const columns = Array.from({ length: 5 });
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Auto-scroll to Wednesday (Index 2) on mobile
+    if (scrollRef.current && window.innerWidth < 768) {
+      setTimeout(() => {
+        if (!scrollRef.current) return;
+        const centerElement = scrollRef.current.children[2] as HTMLElement;
+        if (centerElement) {
+          const scrollPos = centerElement.offsetLeft - (window.innerWidth / 2) + (centerElement.offsetWidth / 2);
+          scrollRef.current.scrollTo({ left: scrollPos, behavior: "smooth" });
+        }
+      }, 600);
+    }
+  }, []);
 
   return (
     <section className="relative w-full min-h-screen bg-[#222224] overflow-hidden border-t border-black pb-24 md:pb-0">
       
       {/* Massive 2026 Background Watermark */}
-      <div className="absolute inset-x-0 bottom-0 pointer-events-none flex items-end justify-center overflow-hidden z-0">
+      <div className="absolute inset-0 pointer-events-none flex items-center justify-center overflow-hidden z-0 md:opacity-100 opacity-60">
          <motion.div
            initial={{ opacity: 0, y: 100 }}
            whileInView={{ opacity: 1, y: 0 }}
@@ -20,7 +36,7 @@ export default function EventDetailsSection() {
            className="w-full text-center"
          >
            <span 
-             className="block text-[45vw] md:text-[38vw] leading-[0.75] font-black text-[#2a2a2c] select-none tracking-tighter"
+             className="block text-[60vw] md:text-[38vw] leading-none font-black text-[#2a2a2c] select-none tracking-tighter"
              style={{ fontFamily: "'Impact', 'Arial Black', sans-serif" }}
            >
              2026
@@ -48,7 +64,10 @@ export default function EventDetailsSection() {
         </div>
 
         {/* 5-Column Typographic Grid */}
-        <div className="flex overflow-x-auto md:grid md:grid-cols-5 w-full flex-grow snap-x snap-mandatory px-6 md:px-16 pb-12 scrollbar-hide">
+        <div 
+          ref={scrollRef}
+          className="flex overflow-x-auto md:grid md:grid-cols-5 w-full flex-grow snap-x snap-mandatory px-6 md:px-16 pb-12 scrollbar-hide"
+        >
           {columns.map((_, i) => {
             const isCenter = i === 2;
             const delay = i * 0.1;
