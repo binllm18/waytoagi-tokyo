@@ -10,6 +10,23 @@ interface CategoryBlockProps {
   duration: number;
 }
 
+const getScaleClass = (logo: string) => {
+  switch (logo) {
+    case "Rectangle-3.png":
+      return "scale-[4.0] origin-left";
+    case "Rectangle-5.png":
+      return "scale-[3.0] origin-left";
+    case "Rectangle-8.png":
+      return "scale-[1.5] origin-left";
+    case "2 28.png":
+    case "Rectangle-11.png":
+    case "Rectangle-2.png":
+      return "scale-[1.6] origin-left"; // Keeping the previous adjustments for the others
+    default:
+      return "scale-100 origin-left";
+  }
+};
+
 const CategoryBlock = ({ title, logos, duration }: CategoryBlockProps) => (
   <div className="w-full flex flex-col text-left mt-8 md:mt-12">
     {/* Specialized Divider Line with Embedded Title */}
@@ -18,16 +35,16 @@ const CategoryBlock = ({ title, logos, duration }: CategoryBlockProps) => (
         {title}
       </span>
     </div>
-    
+
     {/* Mobile Specific - Static Flex Wrap Layout */}
     <div className="flex flex-wrap gap-8 items-center md:hidden">
       {logos.map((logo, i) => (
         <div key={i} className="relative h-8 w-24 flex-shrink-0">
-          <Image 
-            src={`/WaytoAGI/page6_logos/${logo}`} 
-            alt={`${title} Partner ${i}`} 
-            fill 
-            className="object-contain object-left" 
+          <Image
+            src={`/WaytoAGI/page6_logos/${logo}`}
+            alt={`${title} Partner ${i}`}
+            fill
+            className={`object-contain object-left ${getScaleClass(logo)}`}
           />
         </div>
       ))}
@@ -35,23 +52,23 @@ const CategoryBlock = ({ title, logos, duration }: CategoryBlockProps) => (
 
     {/* PC Specific - Unidirectional Segmented Marquee Row */}
     <div className="hidden md:flex overflow-hidden w-full relative">
-       {/* Edge fade linear gradients can be applied here if desired, but keeping pure tech structure as requested */}
-       <motion.div 
-         className="flex gap-12 lg:gap-16 w-max items-center"
-         animate={{ x: ["0%", "-50%"] }}
-         transition={{ ease: "linear", duration, repeat: Infinity }}
-       >
-         {[...logos, ...logos].map((logo, i) => (
-           <div key={i} className="relative h-10 w-32 xl:w-40 flex-shrink-0 group">
-             <Image 
-               src={`/WaytoAGI/page6_logos/${logo}`} 
-               alt={`${title} Partner ${i}`} 
-               fill 
-               className="object-contain object-left md:opacity-70 md:grayscale md:hover:opacity-100 md:hover:grayscale-0 transition-all duration-300 pointer-events-none" 
-             />
-           </div>
-         ))}
-       </motion.div>
+      {/* Edge fade linear gradients can be applied here if desired, but keeping pure tech structure as requested */}
+      <motion.div
+        className="flex gap-12 lg:gap-16 w-max items-center"
+        animate={{ x: ["0%", "-50%"] }}
+        transition={{ ease: "linear", duration, repeat: Infinity }}
+      >
+        {[...logos, ...logos].map((logo, i) => (
+          <div key={i} className="relative h-10 w-32 xl:w-40 flex-shrink-0 group">
+            <Image
+              src={`/WaytoAGI/page6_logos/${logo}`}
+              alt={`${title} Partner ${i}`}
+              fill
+              className={`object-contain object-left md:opacity-70 md:grayscale md:hover:opacity-100 md:hover:grayscale-0 transition-all duration-300 pointer-events-none ${getScaleClass(logo)}`}
+            />
+          </div>
+        ))}
+      </motion.div>
     </div>
   </div>
 );
@@ -66,13 +83,13 @@ export default function Section6() {
   return (
     <section className="relative w-full bg-[#1a1a1c] py-24 md:py-32 flex flex-col justify-center overflow-hidden border-t border-white/5">
       <div className="relative z-10 w-full max-w-[1500px] mx-auto flex flex-col items-start px-6 md:px-12 xl:px-24">
-        
-        <motion.h2 
-           initial={{ opacity: 0, scale: 0.95 }}
-           whileInView={{ opacity: 1, scale: 1 }}
-           viewport={{ once: true, margin: "-100px" }}
-           transition={{ duration: 0.8 }}
-           className="text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight mb-6"
+
+        <motion.h2
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+          className="text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight mb-6"
         >
           {t("s6.title")}
         </motion.h2>
@@ -86,7 +103,7 @@ export default function Section6() {
         >
           {t("s6.desc")}
         </motion.p>
-        
+
         {/* Render segmented categorically separated marquees */}
         <CategoryBlock title={t("s6.cat1")} logos={sponsors} duration={30} />
         <CategoryBlock title={t("s6.cat2")} logos={community} duration={45} />
