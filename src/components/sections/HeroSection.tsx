@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import { useRef } from "react";
 import { useLanguage } from "@/i18n/LanguageContext";
+import NebulaParticles from "@/components/NebulaParticles";
 
 export default function HeroSection() {
   const containerRef = useRef(null);
@@ -20,6 +21,9 @@ export default function HeroSection() {
   return (
     <section ref={containerRef} className="relative w-full h-[100dvh] min-h-[600px] flex flex-col overflow-hidden bg-black">
       
+      {/* 0) Cosmic Interactive Nebula Canvas Layer */}
+      <NebulaParticles />
+
       {/* 1) Top Black Mask Layer & Logos (Fixed height header) */}
       <div className="relative top-0 inset-x-0 h-[22vh] min-h-[140px] max-h-[180px] bg-[#1a1a1c] z-20 flex flex-col justify-center px-6 md:px-12 xl:px-24 border-b border-black/40 shadow-xl">
         <div className="max-w-[1400px] mx-auto w-full flex flex-col justify-center gap-3 md:gap-4 mt-2">
