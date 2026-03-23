@@ -2,32 +2,16 @@
 
 import { useLanguage } from "@/i18n/LanguageContext";
 import { motion } from "framer-motion";
-import { useEffect, useRef } from "react";
 
 export default function EventDetailsSection() {
   const { t } = useLanguage();
   const columns = Array.from({ length: 5 });
-  const scrollRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    // Auto-scroll to Wednesday (Index 2) on mobile
-    if (scrollRef.current && window.innerWidth < 768) {
-      setTimeout(() => {
-        if (!scrollRef.current) return;
-        const centerElement = scrollRef.current.children[2] as HTMLElement;
-        if (centerElement) {
-          const scrollPos = centerElement.offsetLeft - (window.innerWidth / 2) + (centerElement.offsetWidth / 2);
-          scrollRef.current.scrollTo({ left: scrollPos, behavior: "smooth" });
-        }
-      }, 600);
-    }
-  }, []);
 
   return (
     <section className="relative w-full min-h-screen bg-[#222224] overflow-hidden border-t border-black pb-24 md:pb-0">
       
-      {/* Massive 2026 Background Watermark */}
-      <div className="absolute inset-0 pointer-events-none flex items-center justify-center overflow-hidden z-0 md:opacity-100 opacity-60">
+      {/* Massive 2026 Background Watermark (DESKTOP ONLY - Completely Reverted) */}
+      <div className="absolute inset-x-0 bottom-0 pointer-events-none hidden md:flex items-end justify-center overflow-hidden z-0">
          <motion.div
            initial={{ opacity: 0, y: 100 }}
            whileInView={{ opacity: 1, y: 0 }}
@@ -36,7 +20,7 @@ export default function EventDetailsSection() {
            className="w-full text-center"
          >
            <span 
-             className="block text-[60vw] md:text-[38vw] leading-none font-black text-[#2a2a2c] select-none tracking-tighter"
+             className="block text-[38vw] leading-[0.75] font-black text-[#2a2a2c] select-none tracking-tighter"
              style={{ fontFamily: "'Impact', 'Arial Black', sans-serif" }}
            >
              2026
@@ -59,15 +43,11 @@ export default function EventDetailsSection() {
               {t("s2.header")}
             </motion.h2>
           </div>
-          {/* True 100vw divider strictly connecting visually to page edges */}
           <div className="absolute inset-x-0 bottom-0 w-[100vw] left-1/2 -translate-x-1/2 h-px bg-white/10 shadow-lg" />
         </div>
 
-        {/* 5-Column Typographic Grid */}
-        <div 
-          ref={scrollRef}
-          className="flex overflow-x-auto md:grid md:grid-cols-5 w-full flex-grow snap-x snap-mandatory px-6 md:px-16 pb-12 scrollbar-hide"
-        >
+        {/* DESKTOP: 5-Column Typographic Grid (Reverted completely to original perfect state) */}
+        <div className="hidden md:grid md:grid-cols-5 w-full flex-grow px-16 pb-12">
           {columns.map((_, i) => {
             const isCenter = i === 2;
             const delay = i * 0.1;
@@ -79,41 +59,101 @@ export default function EventDetailsSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay }}
-                className="flex-none w-[75vw] md:w-auto snap-center flex flex-col pt-8 md:pt-6 min-h-[400px] md:min-h-0"
+                className="flex flex-col pt-6 h-full"
               >
                 {/* Top Dates */}
                 <div className="flex flex-col gap-2">
-                  <p className={`text-xs md:text-sm font-bold tracking-wider uppercase ${isCenter ? 'text-white' : 'text-white/40'}`}>
+                  <p className={`text-sm font-bold tracking-wider uppercase ${isCenter ? 'text-white' : 'text-white/40'}`}>
                     {t("s2.wed")}
                   </p>
-                  <p className={`text-4xl md:text-5xl lg:text-5xl font-black uppercase ${isCenter ? 'text-white' : 'text-white/40'}`} style={{ fontFamily: "'Impact', 'Arial Black', sans-serif" }}>
+                  <p className={`text-5xl lg:text-5xl font-black uppercase ${isCenter ? 'text-white' : 'text-white/40'}`} style={{ fontFamily: "'Impact', 'Arial Black', sans-serif" }}>
                     {t("s2.date")}
                   </p>
                 </div>
 
                 {/* Center Exclusive Tag */}
                 {isCenter && (
-                  <div className="mt-6 md:mt-8">
-                    <p className="text-4xl md:text-5xl lg:text-5xl font-black text-white uppercase leading-tight" style={{ fontFamily: "'Impact', 'Arial Black', sans-serif" }}>
+                  <div className="mt-8">
+                    <p className="text-5xl lg:text-5xl font-black text-white uppercase leading-tight" style={{ fontFamily: "'Impact', 'Arial Black', sans-serif" }}>
                       {t("s2.event")}
                     </p>
                   </div>
                 )}
 
                 {/* Spacer */}
-                <div className="flex-grow min-h-[120px] md:min-h-[200px]" />
+                <div className="flex-grow min-h-[120px] lg:min-h-[200px]" />
 
                 {/* Bottom Label */}
-                <div className="mt-auto pb-8 md:pb-24">
-                  <p className={`text-sm md:text-base font-bold tracking-wider uppercase ${isCenter ? 'text-white' : 'text-white/40'}`}>
+                <div className="mt-auto pb-16 lg:pb-24">
+                  <p className={`text-base font-bold tracking-wider uppercase ${isCenter ? 'text-white' : 'text-white/40'}`}>
                     {t("s2.week")}
                   </p>
                 </div>
-
               </motion.div>
             );
           })}
         </div>
+
+        {/* MOBILE: Vertical Timeline Cards (New Architecture) */}
+        <div className="flex flex-col md:hidden w-full px-6 pb-24 relative mt-4 gap-12">
+          {/* Vertical Timeline Track */}
+          <div className="absolute left-[31px] top-4 bottom-12 w-px bg-white/10 z-0" />
+          
+          {columns.map((_, i) => {
+            const isCenter = i === 2;
+            return (
+              <div key={i} className="relative z-10 flex items-start gap-6">
+                
+                {/* Timeline Dot Indicator */}
+                <div className={`w-3.5 h-3.5 rounded-full mt-3 shrink-0 ${isCenter ? 'bg-white shadow-[0_0_15px_rgba(255,255,255,1)]' : 'bg-[#111] border border-white/20'}`} />
+                
+                {/* Timeline Content Block */}
+                <div className={`flex flex-col w-full relative ${isCenter ? 'opacity-100' : 'opacity-40'}`}>
+                  
+                  <p className="text-xs font-bold tracking-wider uppercase text-white mb-1">
+                    {t("s2.wed")}
+                  </p>
+                  <p className="text-5xl font-black uppercase text-white tracking-tighter" style={{ fontFamily: "'Impact', 'Arial Black', sans-serif" }}>
+                    {t("s2.date")}
+                  </p>
+
+                  {/* Highlight Event Card */}
+                  {isCenter && (
+                    <div className="mt-8 mb-4 backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-6 shadow-2xl relative overflow-hidden">
+                      <div className="absolute top-0 left-0 w-1 h-full bg-white/80" />
+                      <p className="text-3xl font-black text-white uppercase leading-[1.1] tracking-tight mb-3" style={{ fontFamily: "'Impact', 'Arial Black', sans-serif" }}>
+                        {t("s2.event")}
+                      </p>
+                      <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-white/70">
+                        {t("s2.week")}
+                      </p>
+                    </div>
+                  )}
+
+                  {!isCenter && (
+                    <div className="mt-3">
+                      <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-white/50">
+                        {t("s2.week")}
+                      </p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            );
+          })}
+
+          {/* MOBILE EXCLUSIVE: 2026 Watermark anchored at the absolute bottom of the timeline block */}
+          <div className="absolute bottom-[-10px] inset-x-0 pointer-events-none z-0 opacity-80 flex justify-center overflow-hidden">
+             <span 
+               className="block text-[65vw] leading-[0.75] font-black text-[#2b2b2d] select-none tracking-tighter"
+               style={{ fontFamily: "'Impact', 'Arial Black', sans-serif" }}
+             >
+               2026
+             </span>
+          </div>
+
+        </div>
+
       </div>
     </section>
   );
