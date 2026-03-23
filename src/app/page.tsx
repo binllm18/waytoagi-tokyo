@@ -1,65 +1,55 @@
-import Image from "next/image";
+import TopNavBar from "@/components/TopNavBar";
+import HeroSection from "@/components/sections/HeroSection";
+import EventDetailsSection from "@/components/sections/EventDetailsSection";
+import GlobalCommunitySection from "@/components/sections/GlobalCommunitySection";
+import Section4 from "@/components/sections/Section4";
+import Section5 from "@/components/sections/Section5";
+import Section6 from "@/components/sections/Section6";
+import Section7 from "@/components/sections/Section7";
+import Section8 from "@/components/sections/Section8";
+import Section9 from "@/components/sections/Section9";
+import Section10 from "@/components/sections/Section10";
+import Section11 from "@/components/sections/Section11";
+import Section12 from "@/components/sections/Section12";
+import Section13 from "@/components/sections/Section13";
+import Section14 from "@/components/sections/Section14";
+import Section15 from "@/components/sections/Section15";
+import Section16 from "@/components/sections/Section16";
+import Section17 from "@/components/sections/Section17";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+    <main className="flex flex-col w-full bg-[#050505] min-h-screen text-white">
+      <TopNavBar />
+      {/* Hand-coded Bespoke Sections matching Exact Layouts & Typography */}
+      <HeroSection />
+      <EventDetailsSection />
+      <GlobalCommunitySection />
+      <Section4 />
+      <Section5 />
+      <Section6 />
+      
+      {/* ScrollSpy Anchorage points customized per User Request */}
+      <div id="exhibition">
+        <Section7 />
+        <Section8 />
+      </div>
+      <div id="main-hall"><Section9 /></div>
+      <div id="venue-branding">
+        <Section10 />
+        <Section11 />
+        <Section12 />
+      </div>
+      
+      <div id="media"><Section13 /></div>
+      <div id="tickets"><Section14 /></div>
+      <div id="digital-branding"><Section15 /></div>
+      <div id="others"><Section16 /></div>
+      <Section17 />
+
+      <footer className="w-full py-12 text-center text-white/30 text-sm font-light border-t border-white/5 bg-[#141414]">
+        © 2026 WaytoAGI / Linkloud / Asu Capital Partners. All rights reserved.
+      </footer>
+    </main>
   );
 }

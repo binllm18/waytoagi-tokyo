@@ -123,6 +123,10 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: 'SF Pro Display', 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+  }
+  h2 {
+    font-family: var(--font-oswald), sans-serif;
   }
   html {
     @apply font-sans;
