@@ -20,7 +20,10 @@ export default {
     "date": "4月8日",
     "event": "单日峰会",
     "title": "日本东京八芳园_",
-    "japanToGlobal": "立足日本，链接全球。"
+    "japanToGlobal": "立足日本，链接全球。",
+    "header": "2026 峰会日程",
+    "wed": "星期三",
+    "week": "东京 AI 周"
   },
   "s3": {
     "title1": "WaytoAGI 是一个全球性的开源社区",

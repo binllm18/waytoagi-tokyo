@@ -20,7 +20,10 @@ export default {
     "date": "4月8日",
     "event": "1 DAYS イベント",
     "title": "八芳園、東京_",
-    "japanToGlobal": "日本から世界へ。"
+    "japanToGlobal": "日本から世界へ。",
+    "header": "イベント詳細 2026",
+    "wed": "水曜日",
+    "week": "東京 AI ウィーク"
   },
   "s3": {
     "title1": "WaytoAGIは、グローバルなオープンソースコミュニティです",

@@ -40,7 +40,7 @@ export default function EventDetailsSection() {
                transition={{ duration: 0.8 }}
                className="text-3xl md:text-5xl font-bold text-white tracking-tight"
             >
-              Event Details 2026
+              {t("s2.header")}
             </motion.h2>
           </div>
           {/* True 100vw divider strictly connecting visually to page edges */}
@@ -65,7 +65,7 @@ export default function EventDetailsSection() {
                 {/* Top Dates */}
                 <div className="flex flex-col gap-2">
                   <p className={`text-xs md:text-sm font-bold tracking-wider uppercase ${isCenter ? 'text-white' : 'text-white/40'}`}>
-                    WEDNESDAY
+                    {t("s2.wed")}
                   </p>
                   <p className={`text-4xl md:text-5xl lg:text-5xl font-black uppercase ${isCenter ? 'text-white' : 'text-white/40'}`} style={{ fontFamily: "'Impact', 'Arial Black', sans-serif" }}>
                     {t("s2.date")}
@@ -87,7 +87,7 @@ export default function EventDetailsSection() {
                 {/* Bottom Label */}
                 <div className="mt-auto pb-8 md:pb-24">
                   <p className={`text-sm md:text-base font-bold tracking-wider uppercase ${isCenter ? 'text-white' : 'text-white/40'}`}>
-                    TOKYO AI WEEK
+                    {t("s2.week")}
                   </p>
                 </div>
 

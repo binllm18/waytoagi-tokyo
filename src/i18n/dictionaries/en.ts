@@ -20,7 +20,10 @@ export default {
     "date": "APRIL 8",
     "event": "1 DAY EVENT",
     "title": "HAPPO-EN, TOKYO_",
-    "japanToGlobal": "JAPAN TO GLOBAL."
+    "japanToGlobal": "JAPAN TO GLOBAL.",
+    "header": "Event Details 2026",
+    "wed": "WEDNESDAY",
+    "week": "TOKYO AI WEEK"
   },
   "s3": {
     "title1": "WaytoAGI is a global open-source community",
